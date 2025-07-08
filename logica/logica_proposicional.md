@@ -51,5 +51,65 @@ a sintaxe da lógica proposicional constitui-se de:
 |          $\implies$          |                    implica                    | Operador lógico       |
 |            $\iff$            |          bi-implica ou equivalente a          | Operador lógico       |
 
+### Formalização de argumentos
 
+Podemos usar a lógica proposicional para formalizar um argumento. No processo de formalização, devemos reconhecer as 
+proposições e conectivos que compõem o argumento, de modo que possamos expressá‑lo usando fórmulas bem‑formadas.
 
+Como exemplo, vamos formalizar o seguinte argumento:
+
+1. Se o time joga bem, ganha o campeonato.
+2. Se o time não joga bem, o técnico é culpado.
+3. Se o time ganha o campeonato, os torcedores ficam contentes.
+4. Os torcedores não estão contentes.
+5. Logo, o técnico é culpado.
+
+Primeiro, associamos a cada proposição um símbolo proposicional distinto:
+
+- $p$ : “o time joga bem”
+- $q$ : “o time ganha o campeonato”
+- $r$ : “o técnico é culpado”
+- $s$ : “os torcedores ficam contentes”
+
+Em seguida, usando esses símbolos, escrevemos as fórmulas correspondentes às sentenças do argumento:
+
+- $p \implies q$
+- $\neg p \implies q$
+- $q \implies s$
+- $\neg s$
+- $r$ 
+
+Finalmente, podemos representar todo o argumento de forma abreviada:
+
+$$
+\{ p \implies q, \neg p \implies r, q \implies s, \neg s \} \models r
+$$
+
+sendo que a notação “$\Delta \models \phi $” estabelece que a fórmula $\phi$ é uma consequência lógica do conjunto de fórmulas $\Delta$.
+
+### Tabela verdade
+
+A tabela-verdade é uma ferramenta sistemática para verificar como o valor de uma fórmula lógica varia conforme as combinações de proposições de valor verdadeiro e falso de suas variáveis.
+
+Na prática, ela é uma tabela que resume a validade de todas as combinações de símbolos ou fórmulas que compõem uma fórmula geral.  
+Por exemplo, leve conta a expressão $\neg a \,\lor\, b \implies c$. A tabela-verdade para essa fórmula é:
+
+|  $a$   |  $b$   |  $c$   | $\neg a$ <br> _"<u>não</u> a"_ | $\neg a \,\lor\, b$ <br> _"não a <u>ou</u> b"_ | $\neg a \,\lor\, b \implies c$ <br> _"não a ou b, <u>então</u> c"_ |
+|:------:|:------:|:------:|:------------------------------:|:----------------------------------------------:|:------------------------------------------------------------------:|
+| $\bot$ | $\bot$ | $\bot$ |             $\top$             |                     $\top$                     |                               $\bot$                               |                                |                                          |
+| $\bot$ | $\bot$ | $\top$ |             $\top$             |                     $\top$                     |                               $\top$                               |                                |                                          |
+| $\bot$ | $\top$ | $\bot$ |             $\top$             |                     $\top$                     |                               $\bot$                               |                                |                                          |
+| $\bot$ | $\top$ | $\top$ |             $\top$             |                     $\top$                     |                               $\top$                               |                                |                                          |
+| $\top$ | $\bot$ | $\bot$ |             $\bot$             |                     $\bot$                     |                               $\top$                               |
+| $\top$ | $\bot$ | $\top$ |             $\bot$             |                     $\bot$                     |                               $\bot$                               |
+| $\top$ | $\top$ | $\bot$ |             $\bot$             |                     $\top$                     |                               $\bot$                               |
+| $\top$ | $\top$ | $\top$ |             $\bot$             |                     $\top$                     |                               $\top$                               |
+
+Observe atentamente a lógica para os operadores $\implies$ e $\iff$. No caso acima, a expressão $\neg a \,\lor\, b \implies c$ 
+só assume o valor verdadeiro quando a expressão à direita, chamada _consequência_, é resultado direto (assume o mesmo valor) da expressão à esquerda.  
+Ou seja, até quando ambas assumem o valor $\bot$, a expressão por completo será verdade, pois **é verdade afirmar** que **algo falso** leva a **uma consequência falsa**.
+
+- Tautologia
+- Contradição
+- Leis de deMorgan
+- Prova
