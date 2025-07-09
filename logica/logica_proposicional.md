@@ -109,7 +109,41 @@ Observe atentamente a lógica para os operadores $\implies$ e $\iff$. No caso ac
 só assume o valor verdadeiro quando a expressão à direita, chamada _consequência_, é resultado direto (assume o mesmo valor) da expressão à esquerda.  
 Ou seja, até quando ambas assumem o valor $\bot$, a expressão por completo será verdade, pois **é verdade afirmar** que **algo falso** leva a **uma consequência falsa**.
 
-- Tautologia
-- Contradição
-- Leis de deMorgan
-- Prova
+### Tautologia, Contradição & Contingência
+
+Algumas fórmulas, por coincidência ou não, acabam gerando tabelas cujos valores-verdade assumem apenas valores verdadeiros.  
+Quando isso acontece, a fórmula em questão é denominada **tautologia**. 
+
+No caso totalmente oposto, quando todos os valores assumem a constante falsa, a fórmula é denominada **contradição**.  
+E quando há uma mistura entre valores verdadeiros e falsos nos resultados da tabela, a fórmula é chamada de **contingência**.
+
+Na seção seguinte as tabelas que mostram outros conceitos serão exemplos dos 3 casos.
+
+### Leis de De Morgan, Lei do terceiro excluído e outros valores para constantes
+
+Nas tabelas-verdade, pode-se utilizar outros símbolos para representar as valores "verdadeiro" e "falso".  
+Os símbolos $\top$ e $\bot$ são formais, mas pouco usados já que não são tão triviais.
+
+Em muitos contextos, "verdadeiro" pode ser representado com as letras "V" ou "T" e também o valor 1.  
+E "falso", de modo similar, pelos símbolos "F" ou o valor 0.
+
+Vamos usar de exemplo a **lei do terceiro excluído** (do latim _tertium non datur_), que diz que 
+para qualquer proposição, ou esta proposição é verdadeira, ou sua negação é verdadeira. Ou seja, seja $A$ uma proposição.
+$A$ pode ser verdadeiro. Se não for, $\neg A$ tem que ser verdadeiro, pois não existe uma terceira opção. Na tabela-verdade, isso se verifica assim:
+
+|  $A$   | $\neg A$ | $\,$ | $A$ | $\neg A$ | $\,$ | $A$ | $\neg A$ | 
+|:------:|:--------:|:----:|:---:|:--------:|:----:|:---:|:--------:|
+| $\top$ |  $\bot$  | $\,$ |  V  |    F     | $\,$ |  1  |    0     | 
+| $\bot$ |  $\top$  | $\,$ |  F  |    V     | $\,$ |  0  |    1     | 
+
+Observe que o uso de diferentes representações dos valores-verdade não altera o sentido dos conceitos aplicados.
+
+Com isso em vista, para a lógica proposicional, as leis de De Morgan (1806-1871) são inferências que se estabelecem como variações de uma mesma expressão, 
+envolvendo os operadores $\lor$ e $\land$. As duas regras são:
+
+$$
+\neg (X \lor Y) \iff (\neg X) \land (\neg Y) \,\,\,\,\,\text{ }\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, \neg (X \land Y) \iff (\neg X) \lor (\neg Y)
+$$
+
+
+
