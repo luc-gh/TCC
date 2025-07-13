@@ -1,6 +1,13 @@
 # Lógica proposicional
 
-A lógica proposicional é um formalismo matemático que nos permite abstrair a estrutura de um argumento, eliminando a ambiguidade da linguagem natural. Esse formalismo é composto por:
+A *lógica* pode ser dividida em duas subáreas gerais: 
+
+- A **lógica dedutiva**, baseada em observações;
+- A **lógica indutiva**, que não possui baseamento visual.
+
+A lógica proposicional é um formalismo matemático que nos permite abstrair a estrutura de um argumento, eliminando a ambiguidade da linguagem natural. 
+Ou seja, ela se compõe com os princípios da lógica dedutiva.  
+Esse formalismo é composto por:
 
 1. **Uma linguagem formal**, na qual as proposições são expressas por símbolos e conectivos lógicos.
 2. **Um conjunto de regras de inferência**, que nos permitem analisar um argumento de forma precisa e decidir sua validade.
@@ -38,18 +45,25 @@ Para usá-los de maneira matemática, são introduzidos também as constantes $\
 e os símbolos proposicionais (i.e., letras do alfabeto latino, possivelmente indexadas). Dessa forma, 
 a sintaxe da lógica proposicional constitui-se de:
 
-|           Símbolo            |                  Significado                  | Natureza              |
-|:----------------------------:|:---------------------------------------------:|-----------------------|
-|            $\bot$            |                *FALSO (false)*                | Constante             |
-|            $\top$            |              *VERDADEIRO (true)*              | Constante             |
-|            $\neg$            |                   não (not)                   | Operador lógico       |
-|           $\land$            | e (and) $\text{ ou }$ conjunção (conjunction) | Operador lógico       |
-|            $\lor$            | ou (or) $\text{ ou }$ disjunção (disjunction) | Operador lógico       |
-|           $\oplus$           |              ou exclusivo (xor)               | Operador lógico       |
-|      $A,a,B,b,C,c, ...$      |                  proposições                  | Símbolo proposicional |
-| $\alpha, \beta, \gamma, ...$ |                   fórmulas                    | Fórmula bem-formada   |
-|          $\implies$          |                    implica                    | Operador lógico       |
-|            $\iff$            |          bi-implica ou equivalente a          | Operador lógico       |
+|           Símbolo            |                  Significado                  | Natureza                       |
+|:----------------------------:|:---------------------------------------------:|--------------------------------|
+|            $\bot$            |                *FALSO (false)*                | Constante ou **Valor-verdade** |
+|            $\top$            |              *VERDADEIRO (true)*              | Constante ou **Valor-verdade** |
+|            $\neg$            |                   não (not)                   | Operador lógico **unário**     |
+|           $\land$            | e (and) $\text{ ou }$ conjunção (conjunction) | Operador lógico                |
+|            $\lor$            | ou (or) $\text{ ou }$ disjunção (disjunction) | Operador lógico                |
+|           $\oplus$           |              ou exclusivo (xor)               | Operador lógico                |
+|      $A,a,B,b,C,c, ...$      |                  proposições                  | Símbolo proposicional          |
+| $\alpha, \beta, \gamma, ...$ |                   fórmulas                    | *Fórmula bem-formada*          |
+|          $\implies$          |                    implica                    | Operador lógico                |
+|            $\iff$            |          bi-implica ou equivalente a          | Operador lógico                |
+
+> Uma fórmula bem formulada é uma fórmula sintaticamente correta.
+> 1. $A...Z$ ou $a...z$ são fórmulas bem formuladas.
+> 2. Se $\alpha$ é uma fórmula bem formulada, $\neg \alpha$ também é.
+> 3. Se $\alpha$ e $\beta$ são fórmulas bém formuladas, então $\alpha \land \beta$, $\alpha \lor \beta$, $\alpha \implies \beta$ e $\alpha \iff \beta\,$ também são.
+> 
+> Um operador unário é aquele que se refere a um único elemento, apenas.
 
 ### Formalização de argumentos
 
@@ -109,6 +123,14 @@ Observe atentamente a lógica para os operadores $\implies$ e $\iff$. No caso ac
 só assume o valor verdadeiro quando a expressão à direita, chamada _consequência_, é resultado direto (assume o mesmo valor) da expressão à esquerda.  
 Ou seja, até quando ambas assumem o valor $\bot$, a expressão por completo será verdade, pois **é verdade afirmar** que **algo falso** leva a **uma consequência falsa**.
 
+> OBS: no uso do operador $\implies$, os termos que compõem a fórmula tem nomes especiais que serão úteis adiante.  
+> Na **implicação** $$a \implies b$$ 
+> - $a$ é denominada **_hipótese_**, que é aquilo que se propõe.
+> - e $b$ é denominada **_tese_**, que é aquilo que se conclui.
+> 
+> Já a operação $\iff$ consiste na prática junção de duas implicações de ordem inversa, onde ambas as fórmulas envolvidas são tanto hipóteses quanto teses:
+> $$ (A \implies B) \land (B \implies A) \equiv A \iff B $$
+
 ### Tautologia, Contradição & Contingência
 
 Algumas fórmulas, por coincidência ou não, acabam gerando tabelas cujos valores-verdade assumem apenas valores verdadeiros.  
@@ -119,7 +141,7 @@ E quando há uma mistura entre valores verdadeiros e falsos nos resultados da ta
 
 Na seção seguinte as tabelas que mostram outros conceitos serão exemplos dos 3 casos.
 
-### Leis de De Morgan, Lei do terceiro excluído e outros valores para constantes
+### Leis lógicas, Leis de De Morgan, Lei do terceiro excluído e outros valores para constantes
 
 Nas tabelas-verdade, pode-se utilizar outros símbolos para representar as valores "verdadeiro" e "falso".  
 Os símbolos $\top$ e $\bot$ são formais, mas pouco usados já que não são tão triviais.
@@ -138,6 +160,14 @@ $A$ pode ser verdadeiro. Se não for, $\neg A$ tem que ser verdadeiro, pois não
 
 Observe que o uso de diferentes representações dos valores-verdade não altera o sentido dos conceitos aplicados.
 
+Além desse princípio lógico, outras 3 fórmulas são tratadas como leis lógicas, pois são tautologias claras e absolutas:
+
+$$
+\neg \neg A \equiv A \hspace{100px} A \implies B \equiv \neg A \lor B \hspace{100px} A \implies B \implies C \equiv A \implies (B \implies C)
+$$
+
+Mais a frente serão citadas as regras de precedência.
+
 Com isso em vista, para a lógica proposicional, as leis de De Morgan (1806-1871) são inferências que se estabelecem como variações de uma mesma expressão, 
 envolvendo os operadores $\lor$ e $\land$. As duas regras são:
 
@@ -145,5 +175,47 @@ $$
 \neg (X \lor Y) \iff (\neg X) \land (\neg Y) \,\,\,\,\,\text{ }\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, \neg (X \land Y) \iff (\neg X) \lor (\neg Y)
 $$
 
+Basta criar a tabela-verdade para a primeira expressão, já a segunda é praticamente igual, para comprovar a teoria. Vamos considerar as constantes verdadeiro e falso com os termos V e F:
 
+| $X$ | $Y$ | $\neg X$ | $\neg Y$ | $X \lor Y$ | $\neg (X \lor Y)$ | $(\neg X) \land (\neg Y)$ | $\neg (X \lor Y) \iff (\neg X) \land (\neg Y)$ |
+|:---:|:---:|:--------:|:--------:|:----------:|:-----------------:|:-------------------------:|:----------------------------------------------:|
+|  F  |  F  |    V     |    V     |     F      |         V         |             V             |                       V                        |
+|  F  |  V  |    V     |    F     |     V      |         F         |             F             |                       V                        |
+|  V  |  F  |    F     |    V     |     V      |         F         |             F             |                       V                        |
+|  V  |  V  |    F     |    F     |     V      |         F         |             F             |                       V                        |
 
+A fórmula final é uma tautologia, logo, as expressões que se comparam com o sinal $\iff$ são equivalentes.
+
+### Sintaxe, formalização, propriedades e ordem de precedência
+
+A análise sintática de expressões lógicas consiste em verificar se as fórmulas usadas são bem formuladas ou não.
+Por exemplo, fórmulas como as citadas a seguir não podem ser consideradas como válidas para qualquer análise ou proposição lógica, pois não
+têm nenhum sentido lógico aplicado ou significado coerente:
+
+$$
+A \neg \neg B \hspace{90px} A \lor \land \,B \hspace{90px} A \lor B \neg C \hspace{90px} \implies A \hspace{90px} B \Longleftarrow \Longleftarrow A \hspace{90px} A \neg \land B \lor C
+$$
+
+Já as fórmulas a seguir são exemplos de fórmulas bem formuladas:
+
+$$
+A \implies \neg B \hspace{90px} D \Longleftarrow C \hspace{90px} \neg \neg G \implies F
+$$
+$$
+M \implies \neg \neg \neg C \lor B \hspace{90px} T \iff \neg S \hspace{90px} A \lor B \implies \neg(C \iff D)
+$$
+
+A formalização consiste na conversão de expressões léxicas num idioma humano para formalismos lógicos. Por exemplo:  
+Em *"Faz calor, mas visto o casaco."*, *"Faz calor"* pode ser associado com o símbolo $C$ e *"mas visto o casaco"* com símbolo $D$. 
+E dessa forma, a expressão se tornaria: $C \land D$, já que ambas as coisas são tratadas como verdades.
+
+Listando exemplos:
+
+- "Chove somente se molha a rua." $\,\to\,$ $C:$ "Chove" | $M:$ "molha a rua." $\, \therefore \, M \implies C$.
+- "Se o chão está molhado então choveu e não há cobertura." $\,\to\,$ $A:$ "o chão está molhado" | $B:$ "choveu" | $C:$ "há cobertura." $\, \therefore \, A \implies B \land \neg C$.
+- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
+- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
+- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
+- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
+- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
+- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
