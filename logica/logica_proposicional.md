@@ -211,11 +211,16 @@ E dessa forma, a expressão se tornaria: $C \land D$, já que ambas as coisas s�
 
 Listando exemplos:
 
-- "Chove somente se molha a rua." $\,\to\,$ $C:$ "Chove" | $M:$ "molha a rua." $\, \therefore \, M \implies C$.
-- "Se o chão está molhado então choveu e não há cobertura." $\,\to\,$ $A:$ "o chão está molhado" | $B:$ "choveu" | $C:$ "há cobertura." $\, \therefore \, A \implies B \land \neg C$.
-- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
-- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
-- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
-- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
-- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
-- "" $\,\to\,$ $:$ "" | $:$ "" $\, \therefore \, $.
+- "Chove somente se molha a rua." <br> ↳ $C:$ "Chove" | $M:$ "molha a rua." $\, \therefore \, M \implies C$. <br> <br>
+- "Se o chão está molhado então choveu e não há cobertura." <br> ↳ $A:$ "o chão está molhado" | $B:$ "choveu" | $C:$ "há cobertura." $\, \therefore \, A \implies B \land \neg C$. <br> <br>
+- "Você vai à praia ou não gosta de biscoito." <br> ↳ $V:$ "Você vai à praia" | $G:$ "Você gosta de biscoito" $\, \therefore \, V \lor \neg G$. <br> <br>
+- "T é um triângulo se e somente se T é um polígono de 3 lados." <br> ↳ $E:$ "T é um triângulo" | $P:$ "T é um polígono de 3 lados" $\, \therefore \, E \iff P$. <br> <br>
+- "T é um triângulo se T é um polígono de 3 lados." <br> ↳ $E:$ "T é um triângulo" | $P:$ "T é um polígono de 3 lados" $\, \therefore \, P \implies E$. <br> <br>
+- "Se Denis jogar na loteria, então ele ficará rico ou desiludido." <br> ↳ $L:$ "Denis joga na loteria" | $R:$ "Denis fica rico" | $D:$ "Denis fica desiludido" $\, \therefore \, L \implies R \lor D$. <br> <br>
+
+Para todas essas expressões, a ordem de precedência dos operadores é: $\neg, \land, \lor, \implies, \iff$, lendo as expressões em conjunto da direita para a esquerda.  
+Veja alguns exemplos a seguir:
+
+1. $A \implies \neg B \implies B \implies \neg B \hspace{15px}\equiv\hspace{15px} A \implies ((\neg B) \implies (B \implies (\neg B))) $
+2. $\neg B \iff C \implies D \hspace{15px}\equiv\hspace{15px} (\neg B) \iff (C \iff D)$
+

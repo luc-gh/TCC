@@ -16,7 +16,18 @@ recurso de derivação não gera problemas.
 Na prática, as regras de inferência são definidas na tabela a seguir, onde:
 
 $$
-\frac{P \hspace{50px} P \implies Q}{\therefore Q} \hspace{25px}\text{Modus Ponens} 
+\frac{P \hspace{50px} P \implies Q}{\therefore Q} \hspace{25px}\text{(Modus Ponens)} 
 $$
 
-    
+- $P$ é a primeira premissa ou **proposição**
+- $P \implies Q$ é a segunda **proposição**
+- A barra horizontal é só notação gráfica para separar as premissas da conclusão
+- $Q$ é a conclusão, apresentada após o símbolo de "portanto" ($\therefore$)
+- O texto à direita, no caso "Modus Ponens", é o nome da regra, mas o espaço à direita também pode ser usado para indicar restrições como “$\alpha$ não ocorre em $\Delta$” ou condições de escopo de variáveis
+
+A seguir, a tabela apresenta todas as regras de inferência:
+
+| Regra | Tautologia associada | Nome da regra | Explicação |
+|:-----:|:--------------------:|:-------------:|:----------:|
+|       |                      |               |            |
+|       |                      |               |            |
