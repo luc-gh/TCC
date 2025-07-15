@@ -9,3 +9,9 @@ Os jogos a serem estudados neste trabalho serão escolhidos com base nos critér
 
 ---
 
+### Alternativas de desenvolvimento
+
+- Pygame (Biblioteca - Linguagem Python)
+- Cocos2d-x (Game Engine - Linguagens C++, JavaScript, TypeScript & Lua)
+- libGDX (Framework - Linguagem Java)
+- Godot (Framework - Linguagem GDScript)

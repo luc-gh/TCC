@@ -26,7 +26,7 @@ Esse argumento é válido porque, dadas as premissas, a conclusão decorre inevi
 
 ### Proposição
 
-Uma proposição é uma declaração afirmativa à qual se pode associar um valor
+Uma proposição ou premissa é uma declaração afirmativa à qual se pode associar um valor
 verdadeiro ou falso, mas não ambos.
 
 Ou seja, ela não precisa ser verdadeira para ser considerada uma proposição válida.  
@@ -88,7 +88,7 @@ Primeiro, associamos a cada proposição um símbolo proposicional distinto:
 Em seguida, usando esses símbolos, escrevemos as fórmulas correspondentes às sentenças do argumento:
 
 - $p \implies q$
-- $\neg p \implies q$
+- $\neg p \implies r$
 - $q \implies s$
 - $\neg s$
 - $r$ 
