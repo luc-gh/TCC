@@ -131,13 +131,19 @@ Ou seja, até quando ambas assumem o valor $\bot$, a expressão por completo ser
 > Já a operação $\iff$ consiste na prática junção de duas implicações de ordem inversa, onde ambas as fórmulas envolvidas são tanto hipóteses quanto teses:
 > $$ (A \implies B) \land (B \implies A) \equiv A \iff B $$
 
-### Tautologia, Contradição & Contingência
+### Problemas de satisfatibilidade
 
 Algumas fórmulas, por coincidência ou não, acabam gerando tabelas cujos valores-verdade assumem apenas valores verdadeiros.  
-Quando isso acontece, a fórmula em questão é denominada **tautologia**. 
+Quando isso acontece, a fórmula em questão é denominada **tautologia** e é chamada também de <u>*fórmula válida*</u>.
 
-No caso totalmente oposto, quando todos os valores assumem a constante falsa, a fórmula é denominada **contradição**.  
-E quando há uma mistura entre valores verdadeiros e falsos nos resultados da tabela, a fórmula é chamada de **contingência**.
+No caso totalmente oposto, quando todos os valores assumem a constante falsa, a fórmula é denominada **contradição**. Além disso,
+é dito que a fórmula, nesse caso, é <u>*insatisfatível*</u>.
+
+E quando há uma mistura entre valores verdadeiros e falsos nos resultados da tabela, a fórmula é chamada de **contingência**.  
+Para esses casos, duas denominações descritivas também são aceitas:
+
+- Fórmula <u>*satisfatível*</u>: que admite ao menos uma interpretação verdadeira (um valor-verdade, dentre os possíveis, é verdadeiro)
+- Fórmula <u>*inválida*</u>: onde ao menos uma possibilidade é falsa.
 
 Na seção seguinte as tabelas que mostram outros conceitos serão exemplos dos 3 casos.
 
