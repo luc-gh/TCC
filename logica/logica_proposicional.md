@@ -227,6 +227,16 @@ Listando exemplos:
 Para todas essas expressões, a ordem de precedência dos operadores é: $\neg, \land, \lor, \implies, \iff$, lendo as expressões em conjunto da direita para a esquerda.  
 Veja alguns exemplos a seguir:
 
-1. $A \implies \neg B \implies B \implies \neg B \hspace{15px}\equiv\hspace{15px} A \implies ((\neg B) \implies (B \implies (\neg B))) $
-2. $\neg B \iff C \implies D \hspace{15px}\equiv\hspace{15px} (\neg B) \iff (C \iff D)$
+> 1. $$A \implies \neg B \implies B \implies \neg B \hspace{15px}\equiv\hspace{15px} A \implies ((\neg B) \implies (B \implies (\neg B))) $$
+>
+> 2. $$\neg B \iff C \implies D \hspace{15px}\equiv\hspace{15px} (\neg B) \iff (C \implies D)$$
+>
+> 3. $$\neg A \iff \neg A \land \neg B \implies A \implies \neg B \equiv \neg A \iff ((\neg A \land \neg B) \implies (A \implies \neg B))$$
 
+Além disso, as seguintes propriedades são aplicáveis quanto aos operadores:
+
+- *Comutativa*: $A \lor B \equiv B \lor A$ (válida também para $\land$ e $\iff$)
+- *Associativa*: $(A \land B) \land C \equiv A \land (B \land C)$ (válida também para $\lor$ e $\iff$)
+- *Distributiva*: $$A \land (B \lor C) \equiv (A \land B) \lor (A \land C)$$ $$A \lor (B \land C) \equiv (A \lor B) \land (A \lor C)$$
+
+Esses princípios serão usados principalmente nas deduções naturais e na lógica dos predicados, mais a frente (nos arquivos seguintes).
