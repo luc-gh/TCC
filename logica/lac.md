@@ -63,13 +63,39 @@ $$
  \,3. & R \implies S & Pr  \\
  \,4. & S \implies T & Pr  \\
  \,5. & | \, P & Hip  \\
- \,6. & | \, Q & MP  \\
- \,7. & | \, R & MP  \\
- \,8. & | \, S & MP  \\
- \,9. & | \, T & MP  \\
- \,10. & P \implies T & HPPC  \\
+ \,6. & | \, Q & 1\,,\,5 \,\, MP  \\
+ \,7. & | \, R & 2\,,\,6 \,\, MP  \\
+ \,8. & | \, S & 3\,,\,7 \,\, MP  \\
+ \,9. & | \, T & 4\,,\,8 \,\, MP  \\
+ \,10. & P \implies T & 5-9 \,\, HPPC  \\
 \end{array}
 $$
+
+#### Exemplo 2 (Lógica proposicional)
+
+Dada a proposição $A \implies B$, prove que $(A \lor C) \implies (B \lor C)$.
+
+$$
+\{A \implies B\} \models (A \lor C) \implies (B \lor C)
+$$
+$$
+\begin{array}{ l l | l }
+ \,1. & A \implies B & Pr  \\ 
+ \,2. & | \, A \lor C & Hip  \\  
+ \,3. & || \, \neg C & Hip  \\
+ \,4. & || \, A & 2\,,\,3 \,\, SD  \\
+ \,5. & || \, B & 4\,,\,1 \,\, MP  \\
+ \,6. & || \, B \lor C & 5 \,\, I \,\lor  \\
+ \,7. & | \, \neg C \implies B \lor C & 3-6 \,\, HPPC  \\
+ \,8. & || \, C & Hip  \\
+ \,9. & || \, C \lor B & 8 \,\, I \, \lor  \\
+ \,10. & | \, C \implies C \lor B & 8-9 \,\, HPPC  \\
+ \,11. & | \, C \lor \neg C & 3\,,8\,\,\,\, \top  \\
+ \,12. & | \, B \lor C & 7\,,10\,,11\,\, E \, \lor  \\
+ \,13. & (A \lor C) \implies (B \lor C) & 2\,,12\,\, HPPC  \\
+\end{array}
+$$
+
 
 ### Quantificadores lógicos
 
