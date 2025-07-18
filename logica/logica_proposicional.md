@@ -129,7 +129,7 @@ Ou seja, até quando ambas assumem o valor $\bot$, a expressão por completo ser
 > - e $b$ é denominada **_tese_**, que é aquilo que se conclui.
 > 
 > Já a operação $\iff$ consiste na prática junção de duas implicações de ordem inversa, onde ambas as fórmulas envolvidas são tanto hipóteses quanto teses:
-> $$ (A \implies B) \land (B \implies A) \equiv A \iff B $$
+> $$(A \implies B) \land (B \implies A) \equiv A \iff B$$
 
 ### Problemas de satisfatibilidade
 
