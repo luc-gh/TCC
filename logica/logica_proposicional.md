@@ -99,7 +99,7 @@ $$
 \{ p \implies q, \neg p \implies r, q \implies s, \neg s \} \models r
 $$
 
-sendo que a notação "$\Delta \models \phi$" estabelece que a fórmula $\phi$ é uma consequência lógica do conjunto de fórmulas $\Delta$.
+sendo que a notação " $\Delta \models \phi$ " estabelece que a fórmula $\phi$ é uma consequência lógica do conjunto de fórmulas $\Delta$.
 
 ### Tabela verdade
 
