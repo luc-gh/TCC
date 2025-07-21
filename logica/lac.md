@@ -88,11 +88,11 @@ $$
   \hspace{4px} 6. & || \hspace{4px}  B \lor C & 5 \, \hspace{4px}  I  \hspace{4px} \lor  \\
   \hspace{4px} 7. & |  \hspace{4px}  \neg C \implies B \lor C & 3-6 \, \hspace{4px}  HPPC  \\
   \hspace{4px} 8. & || \hspace{4px}  C & Hip  \\
-  \hspace{4px} 9. & || \hspace{4px}  C \lor B & 8 \, \hspace{4px}  I  \hspace{4px}  \lor  \\
-  \hspace{4px} 10. & | \hspace{4px}  C \implies C \lor B & 8-9 \, \hspace{4px}  HPPC  \\
-  \hspace{4px} 11. & | \hspace{4px}  C \lor \neg C & 3 \hspace{4px} ,8\,\,\, \hspace{4px}  \top  \\
-  \hspace{4px} 12. & | \hspace{4px} B \lor C & 7 \hspace{4px} ,10 \hspace{4px} , 11 \hspace{4px} E  \hspace{4px}  \lor  \\
-  \hspace{4px} 13. & (A \lor C) \implies (B \lor C) & 2\,,12\, \hspace{4px}  HPPC  \\
+  \hspace{4px} 9. & || \hspace{4px}  C \lor B & 8 \hspace{6px}  I  \hspace{4px}  \lor  \\
+  \hspace{4px} 10. & | \hspace{4px}  C \implies C \lor B & 8-9 \hspace{6px}  HPPC  \\
+  \hspace{4px} 11. & | \hspace{4px}  C \lor \neg C & 3 \hspace{4px},8 \hspace{15px}  \top  \\
+  \hspace{4px} 12. & | \hspace{4px} B \lor C & 7 \hspace{4px} ,10 \hspace{4px} , 11 \hspace{7px} E  \hspace{3px}  \lor  \\
+  \hspace{4px} 13. & (A \lor C) \implies (B \lor C) & 2 \hspace{4px},12 \hspace{6px}  HPPC  \\
 \end{array}
 $$
 
