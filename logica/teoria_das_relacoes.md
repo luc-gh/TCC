@@ -25,3 +25,9 @@ pertence à relação se satisfizer um predicado sobre esses $n$ elementos.
 
 > #### Exemplo
 > Em $A=\{1,2\},B=\{2\},C=\{2, 3\}$, a relação $\rho(x,y,z) \iff x = y = z$ tem $\{(2,2,2)\}$.
+
+### Relação Unária
+Caso especial com $n=1$: um subconjunto particular de $S$ que identifica elementos que satisfazem uma propriedade.
+
+> #### Exemplo
+> Conjunto dos pares em $\mathbb{N}: \{x \in \mathbb{N} \hspace{5px}\vert\hspace{5px} x \text{ é par} \}$
