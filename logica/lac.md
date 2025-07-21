@@ -83,8 +83,8 @@ $$
   \hspace{4px} 1. & A \implies B & Pr  \\ 
   \hspace{4px} 2. & | \hspace{4px}  A \lor C & Hip  \\  
   \hspace{4px} 3. & || \hspace{4px}  \neg C & Hip  \\
-  \hspace{4px} 4. & || \hspace{4px}  A & 2\,,\,3 \, \hspace{4px}  SD  \\
-  \hspace{4px} 5. & || \hspace{4px}  B & 4 \hspace{4px} , \hspace{4px} 1 \, \hspace{4px}  MP  \\
+  \hspace{4px} 4. & || \hspace{4px}  A & 2 \hspace{4px}, 3 \, \hspace{4px}  SD  \\
+  \hspace{4px} 5. & || \hspace{4px}  B & 4 \hspace{4px}, 1 \, \hspace{4px}  MP  \\
   \hspace{4px} 6. & || \hspace{4px}  B \lor C & 5 \, \hspace{4px}  I  \hspace{4px} \lor  \\
   \hspace{4px} 7. & |  \hspace{4px}  \neg C \implies B \lor C & 3-6 \, \hspace{4px}  HPPC  \\
   \hspace{4px} 8. & || \hspace{4px}  C & Hip  \\
