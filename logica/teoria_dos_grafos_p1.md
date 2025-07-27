@@ -1,6 +1,6 @@
 # Teoria dos Grafos
 
-Este guia organiza e apresenta os principais conceitos de **Teoria dos Grafos**, com definições formais, exemplos (Mermaid e LaTeX) e ilustrações.
+Aquis são descritos os principais conceitos de **Teoria dos Grafos**, com definições formais.
 
 ---
 
@@ -8,8 +8,8 @@ Este guia organiza e apresenta os principais conceitos de **Teoria dos Grafos**,
 
 - **Grafo**  
   Um grafo é um par $G=(V,E)$ onde  
-  - $V$ é um **conjunto finito de vértices**.  
-  - $E\subseteq \{\{u,v\}\mid u,v\in V,\,u\neq v\}$ é o **conjunto de arestas** (para grafos simples não orientados).
+  - $V$ é um **conjunto finito de vértices**, que são objetos de referência principais.  
+  - $E\subseteq \{\{u,v\}\mid u,v\in V,\,u\neq v\}$ é o **conjunto de arestas** (para grafos simples não orientados). Uma aresta é um relacionamento entre vértices.
 
 - **Ordem**  
   $\lvert V\rvert$: número de vértices.
@@ -289,7 +289,7 @@ Em outras palavras, $\chi(G)$ é o menor número possível de cores necessárias
 ### 14. Densidade e Conectividade
 
 - **Densidade** $d(G)$:
-    $$d(G) = \frac{2|E|}{|V|(|V|-1)},\quad 0\le d(G)\le1$$
+    $$d(G) = \frac{2|E|}{|V|\times(|V|-1)},\quad 0\le d(G)\le1$$
 - **Conectividade** (vertex‑connectivity $\kappa(G)$, edge‑connectivity $\lambda(G)$):  
   menor número de vértices (ou arestas) cuja remoção desconecta $G$.
 
