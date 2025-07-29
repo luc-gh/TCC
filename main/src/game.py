@@ -1,12 +1,14 @@
 import sys
 import pygame
 from constants import *
+from graph import Graph
+from shapes import POSSIBLE_SHAPES
 
-# inicialização
+# Reinicialização
 pygame.init()
 
 # Janela [1]
-Screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("COL")
 
 # Logo
@@ -30,18 +32,19 @@ LEFT_ARROW  = pygame.Rect(SCREEN_WIDTH // 2 - 50, 200, 30, 30)
 RIGHT_ARROW = pygame.Rect(SCREEN_WIDTH // 2 + 50, 200, 30, 30)
 PLAY_BUTTON = pygame.Rect((SCREEN_WIDTH // 2 - 100, 450), (200, 60))
 
+# Menu inicial
 def draw_menu():
-    Screen.fill(BG_COLOR)
+    SCREEN.fill(BG_COLOR)
 
     # Desenhar logo, se carregado
     if logo_img:
         logo_rect = logo_img.get_rect(center=(SCREEN_WIDTH // 2, 140))
-        Screen.blit(logo_img, logo_rect)
+        SCREEN.blit(logo_img, logo_rect)
 
     # Título
     title_surf = FONT_MEDIUM.render("Número de jogadores", True, TEXT_COLOR)  # Posicionamento vertical do texto "nº de jogadores"
     title_pos = title_surf.get_rect(center=(SCREEN_WIDTH//2, 105))
-    Screen.blit(title_surf, title_surf.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)))
+    SCREEN.blit(title_surf, title_surf.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)))
 
     # Setas e número atual
     arrows_y = title_pos.bottom + 210
@@ -50,14 +53,14 @@ def draw_menu():
 
     # Seta para esquerda
     left_color = BUTTON_HOVER if LEFT_ARROW.collidepoint(pygame.mouse.get_pos()) else TEXT_COLOR
-    pygame.draw.polygon(Screen, left_color, [
+    pygame.draw.polygon(SCREEN, left_color, [
         (LEFT_ARROW.right, LEFT_ARROW.top),
         (LEFT_ARROW.left, LEFT_ARROW.centery),
         (LEFT_ARROW.right, LEFT_ARROW.bottom),
     ])
     # Seta para direita
     right_color = BUTTON_HOVER if RIGHT_ARROW.collidepoint(pygame.mouse.get_pos()) else TEXT_COLOR
-    pygame.draw.polygon(Screen, right_color, [
+    pygame.draw.polygon(SCREEN, right_color, [
         (RIGHT_ARROW.left, RIGHT_ARROW.top),
         (RIGHT_ARROW.right, RIGHT_ARROW.centery),
         (RIGHT_ARROW.left, RIGHT_ARROW.bottom),
@@ -66,7 +69,7 @@ def draw_menu():
     # Número (centro entre as setas)
     num_surf = FONT_MEDIUM.render(str(temporary_number_of_players), True, TEXT_COLOR)
     num_pos = num_surf.get_rect(center=(SCREEN_WIDTH // 2, arrows_y + LEFT_ARROW.height // 2))
-    Screen.blit(num_surf, num_pos)
+    SCREEN.blit(num_surf, num_pos)
 
     # Lista de jogadores em linha
     count = temporary_number_of_players
@@ -80,19 +83,43 @@ def draw_menu():
 
         # Nome editável
         name_surf = FONT_MEDIUM.render(player_names[i], True, TEXT_COLOR)
-        Screen.blit(name_surf, name_surf.get_rect(center=(x, y_text)))
+        SCREEN.blit(name_surf, name_surf.get_rect(center=(x, y_text)))
 
         # Quadrado de cor ao lado
         square = pygame.Rect(x + name_surf.get_width()//2 + 10, y_text - 15, 30, 30)
-        pygame.draw.rect(Screen, PLAYER_COLORS[i], square)
-        pygame.draw.rect(Screen, TEXT_COLOR, square, 2)
+        pygame.draw.rect(SCREEN, PLAYER_COLORS[i], square)
+        pygame.draw.rect(SCREEN, TEXT_COLOR, square, 2)
 
     # Botão “JOGAR”
     mouse = pygame.mouse.get_pos()
     btn_color = BUTTON_HOVER if PLAY_BUTTON.collidepoint(mouse) else BUTTON_COLOR
-    pygame.draw.rect(Screen, btn_color, PLAY_BUTTON, border_radius=8)
+    pygame.draw.rect(SCREEN, btn_color, PLAY_BUTTON, border_radius=8)
     play_surf = FONT_MEDIUM.render("JOGAR", True, TEXT_COLOR)
-    Screen.blit(play_surf, play_surf.get_rect(center=PLAY_BUTTON.center))
+    SCREEN.blit(play_surf, play_surf.get_rect(center=PLAY_BUTTON.center))
+
+
+# Tela de jogo
+def play():
+    # Limpa o menu
+    SCREEN.fill(BG_COLOR)
+
+    # Constroi o grafo a partir das shapes
+    shapes = POSSIBLE_SHAPES
+    graph  = Graph(shapes, min_face_area=100)
+
+    # Desenha arestas
+    for v1, v2 in graph.edges:
+        # Se graph.edges armazenar pares de índices em vez de tuplas de coordenadas,
+        # você deve buscar as coords em graph.vertices:
+        #   p1 = graph.vertices[v1]; p2 = graph.vertices[v2]
+        pygame.draw.line(SCREEN, SHAPES_COLOR, v1, v2, 2)
+
+    # (Opcional) Desenha faces por cima, se quiser pintar as faces:
+    # for face in graph.faces:
+    #     pygame.draw.polygon(screen, face_color, face)
+
+    # Atualiza a tela
+    pygame.display.update()
 
 # Loop de jogo [2]
 running = True
@@ -119,7 +146,7 @@ while running:
                 gameWasStarted = True
 
     if not gameWasStarted: draw_menu()
-    # else: play()
+    else: play()
 
     # Atualizar tela a cada frame
     pygame.display.update()
