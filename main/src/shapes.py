@@ -67,7 +67,7 @@ POSSIBLE_SHAPES = [
     random_polygon(sides=5),
     random_polygon(sides=6),
     random_polygon(sides=7),
-    random_polygon(sides=8),
-    random_polygon(sides=9)
+    random_polygon(sides=4),
+    random_polygon(sides=6)
 ]
 
