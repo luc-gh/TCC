@@ -16,7 +16,7 @@ def play(screen, number_of_players, graph: Graph):
     # Alterar cor da face por clique
     graph.desenhar(screen, cor_arestas=SHAPES_COLOR, largura_arestas=1)
 
-    # Detectar clique em face, alterar cor da face de acordo com a vez de cada jogador
+    # Detectar clique em face, alterar cor da face conforme a vez de cada jogador
 
 
     # Atualiza a tela

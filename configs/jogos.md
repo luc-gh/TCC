@@ -17,33 +17,28 @@ Os jogos a serem estudados neste trabalho serão escolhidos com base nos critér
 - Godot (Framework - Linguagem GDScript)
 
 ### Possibilidades de jogos
+| Jogo              | Possíveis conceitos de Grafos                                                         | Fase                                                         | Referências                                                  | Visualização                                                                 |
+|-------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------------------|
+| **Col**           | Coloração de vértices; Teorema de Ramsey para vizinhança adjacente                    | Implementar                                                  |                                                              |                                                                              |
+| **Sim**           | Coloração de arestas em $K_6$, Ramsey $R(3,3)=6$                                      | Implementar                                                  | [Hexi Game](https://share.catrob.at/pocketcode/program/1478) | <img src="../main/assets/Sim-game.png" alt="Sim" width="150">                |
+| **Campo Minado**  | Grafo de adjacência em grid; busca de componentes seguras (flood-fill)                | Analisar implementação pronta / Jogar / Analisar visualmente |                                                              | <img src="../main/assets/campo-minado.png" alt="Campo Minado" width="150">   |
+| **Sudoku**        | Grafo de coloração (vértices = células; arestas = restrições de linha/bloco)          | Analisar implementação pronta / Jogar / Analisar visualmente |                                                              | <img src="../main/assets/sudoku.png" alt="Sudoku" width="150">               |
+| **Flow Tree**     | Árvores geradoras em grade; caminhos sem ciclos                                       | Analisar implementação pronta                                |                                                              | <img src="../main/assets/flow.gif" alt="Flow Tree" width="150">              |
+| **Hashiwokakero** | Conectividade e árvore geradora mínima; backtracking em tabuleiro de “ilhas e pontes” | Analisar implementação pronta                                |                                                              | <img src="../main/assets/Hashiwokakero.png" alt="Hashiwokakero" width="150"> |
+| **4 em linha**    | Game tree em grade; detecção de vitória via buscas em grafos                          | Analisar implementação pronta                                |                                                              | <img src="../main/assets/4-em-linha.png" alt="4 em linha" width="150">       |
+| **Carcassonne**   | Grafos planos: conectividade de estradas e cidades ao posicionar peças                | Analisar implementação pronta                                |                                                              | <img src="../main/assets/Carcassone.png" alt="Carcassonne" width="150">      |
+| **Xadrez**        | Game tree de posições; algoritmos minimax/α–β em grafo de transição de peças          | Jogar / Analisar visualmente                                 |                                                              | <img src="../main/assets/xadrez.png" alt="Xadrez" width="150">               |
 
-| Jogo               | Conceito de Grafos                                                                    | Fase                          |
-|--------------------|---------------------------------------------------------------------------------------|-------------------------------|
-| **Col**            | Coloração de vértices; Teorema de Ramsey para vizinhança adjacente                    | Implementar                   |
-| **Sim**            | Coloração de arestas em $K_6$, Ramsey $R(3,3)=6$                                      | Implementar                   |
-| **Minesweeper**    | Grafo de adjacência em grid; busca de componentes seguras (flood-fill)                | Implementar                   |
-| **Sudoku**         | Grafo de coloração (vértices = células; arestas = restrições de linha/bloco)          | Implementar                   |
-| **Flow Tree**      | Árvores geradoras em grade; caminhos sem ciclos                                       | Analisar implementação pronta |
-| **Hashiwokakero**  | Conectividade e árvore geradora mínima; backtracking em tabuleiro de “ilhas e pontes” | Analisar implementação pronta |
-| **Connect Four**   | Game tree em grade; detecção de vitória via buscas em grafos                          | Analisar implementação pronta |
-| **Carcassonne**    | Grafos planos: conectividade de estradas e cidades ao posicionar peças                | Analisar implementação pronta |
-| **Ticket to Ride** | Rotas em grafo ponderado; conectividade e bloqueio estratégico de caminhos            | Jogar / Analisar visualmente  |
-| **Pandemic**       | Propagação de epidemias em rede dinâmica; fluxos e contenção em grafos                | Jogar / Analisar visualmente  |
-| **Chess**          | Game tree de posições; algoritmos minimax/α–β em grafo de transição de peças          | Jogar / Analisar visualmente  |
 
-Os jogos também podem ter alguns exemplos de aspectos indiretos nos seus protótipos, com relação a [fonte]():
+Os jogos também podem ter alguns exemplos de aspectos indiretos nos seus protótipos, com relação ao [TCC - Universo Programado](https://www.universoprogramado.com/tcc.pdf):
 
 - Máquinas de estados (state machines)  
     Menus, fluxos de jogo e lógica de fases (Flappy Bird, Dino do Chrome e simuladores) são quase sempre implementados como grafos dirigidos de estados e transições.
 - Cenas e renderização
     Engines de jogos (pygame, Godot, libGDX) usam internamente scene graphs — árvores onde cada nó é um objeto na cena, definindo hierarquia e transformações.
-
 - Particionamento espacial  
     Para colisões e queries de proximidade, usam-se árvores (quadtrees, k-d trees) ou grafos de vizinhança em grid, acelerando detecção de colisão.
-
 - IA de NPCs / Oponentes  
     Pathfinding em pistas (simulador de corrida) ou navios (Pandemic, Ticket to Ride) recorre a grafos de waypoints e algoritmos de busca como A*.
-
 - Pipeline de simulação  
     No simulador de foguete, o encadeamento de módulos (tanque → bomba → motor) pode ser modelado como grafo de dependências.
