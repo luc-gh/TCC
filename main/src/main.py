@@ -22,31 +22,23 @@ shapes = POSSIBLE_SHAPES
 graph: Graph = None
 
 while running:
-
-    # Manipulador de eventos [3]
-    for event in pygame.event.get():
-
-        # Sair do jogo
-        if event.type == pygame.QUIT:
-            running = False
-
-        # Clique do mouse
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if LEFT_ARROW.collidepoint(event.pos):
-                temporary_number_of_players = max(min_players, temporary_number_of_players - 1)
-            if RIGHT_ARROW.collidepoint(event.pos):
-                temporary_number_of_players = min(max_players, temporary_number_of_players + 1)
-            if PLAY_BUTTON.collidepoint(event.pos):
-                num_players = temporary_number_of_players  # confirma seleção
-                print(f"Iniciando jogo com {num_players} jogadores!")
-                game_started = True
-                graph = Graph(shapes, area_minima_face=100)
+    events = pygame.event.get()
 
     if not game_started:
+        for event in events:
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                if PLAY_BUTTON.collidepoint(event.pos):
+                    print(f"Iniciando jogo com 2 jogadores!")
+                    graph = Graph(shapes, area_minima_face=100)
+                    game_started = True
         draw_menu(SCREEN)
-        pygame.display.update()                 # Atualizar tela a cada frame
+        pygame.display.update()
     else:
-        play(SCREEN, num_players, graph)
+        cont = play(SCREEN, graph, events)
+        if not cont:
+            game_started = False
 
 # Encerrar pygame
 pygame.quit()

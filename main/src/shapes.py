@@ -62,12 +62,12 @@ def random_polygon(sides=5):
 POSSIBLE_SHAPES = [
     random_rect(),
     random_circle(),
-    random_ellipse(),
-    random_triangle(),
+    # random_ellipse(),
+    #random_triangle(),
     random_polygon(sides=5),
-    random_polygon(sides=6),
-    random_polygon(sides=7),
+    # random_polygon(sides=6),
+    # random_polygon(sides=7),
     random_polygon(sides=4),
-    random_polygon(sides=6)
+    # random_polygon(sides=6)
 ]
 
