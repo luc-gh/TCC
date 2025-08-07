@@ -3,7 +3,7 @@ from constants import *
 
 # Logo
 try:
-    logo_img = pygame.image.load(r'C:/Users/conta/Documents/Programacao/Outros/TCC/main/assets/COL.png').convert_alpha()
+    logo_img = pygame.image.load(r'C:/Users/conta/Documents/Programacao/Outros/TCC/main/assets/col-logo.png').convert_alpha()
     logo_img = pygame.transform.smoothscale(logo_img, (1600, 900))     # Redimensionar a imagem
 except pygame.error:
     logo_img = None  # se falhar ao carregar, seguimos sem imagem
@@ -15,7 +15,7 @@ def draw_menu(screen: pygame.Surface):
     # Desenhar logo, se carregado
     if logo_img:
         logo_rect = logo_img.get_rect(center=(SCREEN_WIDTH // 2, 140))
-        screen.blit(logo_img.convert_alpha(screen), logo_rect)
+        screen.blit(logo_img, logo_rect)
 
     # Título
     # title_surf = FONT_MEDIUM.render("Número de jogadores", True, TEXT_COLOR)  # Posicionamento vertical do texto "nº de jogadores"
