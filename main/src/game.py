@@ -73,7 +73,9 @@ def play(screen, graph: Graph, events):
     if play.finished:
         msg = f"{player_names[play.winner]} venceu!"
         msg_surf = FONT_LARGE.render(msg, True, PLAYER_COLORS[play.winner])
-        screen.blit(msg_surf, msg_surf.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2 -50)))
+        # exibe mensagem de vitória no topo centralizado
+        msg_rect = msg_surf.get_rect(midtop=(SCREEN_WIDTH//2, 20))
+        screen.blit(msg_surf, msg_rect)
         color_btn = BUTTON_HOVER if PLAY_BUTTON.collidepoint(pygame.mouse.get_pos()) else BUTTON_COLOR
         pygame.draw.rect(screen, color_btn, PLAY_BUTTON, border_radius=8)
         label = FONT_MEDIUM.render("Voltar ao menu", True, TEXT_COLOR)

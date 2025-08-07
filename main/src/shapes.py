@@ -58,7 +58,7 @@ def random_polygon(sides=5):
         verts.append((x, y))
     return 'polygon', verts
 
-# Lista de possíveis formas para usar no jogo
+# Lista de possíveis formas para usar no jogo (estática)
 POSSIBLE_SHAPES = [
     random_rect(),
     random_circle(),
@@ -66,8 +66,19 @@ POSSIBLE_SHAPES = [
     #random_triangle(),
     random_polygon(sides=5),
     # random_polygon(sides=6),
-    # random_polygon(sides=7),
     random_polygon(sides=4),
     # random_polygon(sides=6)
 ]
 
+def generate_shapes():
+    """
+    Gera uma nova coleção de shapes aleatórias para iniciar uma partida.
+    """
+    return [
+        random_rect(),
+        random_circle(),
+        # random_ellipse(),
+        # random_triangle(),
+        random_polygon(sides=5),
+        random_polygon(sides=4),
+    ]

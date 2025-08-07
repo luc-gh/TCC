@@ -2,7 +2,7 @@ import sys
 import pygame
 from constants import *
 from graph import Graph
-from shapes import POSSIBLE_SHAPES
+import shapes as shapes_module
 from game import play
 from menu import draw_menu
 
@@ -17,8 +17,7 @@ pygame.display.set_caption("COL")
 running = True
 game_started = False
 
-# Constroi o grafo a partir das shapes
-shapes = POSSIBLE_SHAPES
+shapes = None  # receberá lista de shapes da partida
 graph: Graph = None
 
 while running:
@@ -31,6 +30,8 @@ while running:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if PLAY_BUTTON.collidepoint(event.pos):
                     print(f"Iniciando jogo com 2 jogadores!")
+                    # gera novas shapes aleatórias a cada partida
+                    shapes = shapes_module.generate_shapes()
                     graph = Graph(shapes, area_minima_face=100)
                     game_started = True
         draw_menu(SCREEN)
