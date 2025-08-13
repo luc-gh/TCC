@@ -42,3 +42,14 @@ Os jogos também podem ter alguns exemplos de aspectos indiretos nos seus protó
     Pathfinding em pistas (simulador de corrida) ou navios (Pandemic, Ticket to Ride) recorre a grafos de waypoints e algoritmos de busca como A*.
 - Pipeline de simulação  
     No simulador de foguete, o encadeamento de módulos (tanque → bomba → motor) pode ser modelado como grafo de dependências.
+
+## Col
+
+O Col é um jogo onde dois jogadores alternam turnos para colorir vértices de um grafo planar, seguindo regras de coloração.  
+O objetivo é evitar que dois vértices adjacentes tenham a mesma cor, refletindo o Teorema das Quatro Cores.
+
+
+## SIM
+
+O SIM é um jogo de coloração de arestas, onde os jogadores devem colorir as arestas de um grafo completo $K_6$ de forma que não haja arestas adjacentes com a mesma cor.
+O jogo é baseado no Teorema de Ramsey, que garante que em qualquer coloração de arestas de $K_6$, sempre haverá um triângulo monocromático (todas arestas de uma mesma cor).
