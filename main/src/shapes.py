@@ -11,23 +11,23 @@ MAX_SIZE_H = SCREEN_HEIGHT // 3
 def random_rect():
     w = random.randint(MIN_SIZE, MAX_SIZE_W)
     h = random.randint(MIN_SIZE, MAX_SIZE_H)
-    x = random.randint(10, SCREEN_WIDTH - w)
-    y = random.randint(10, SCREEN_HEIGHT - h)
+    x = random.randint(w, SCREEN_WIDTH - w)
+    y = random.randint(h, SCREEN_HEIGHT - h)
     return 'rect', pygame.Rect(x, y, w, h)
 
 
 def random_circle():
     radius = random.randint(MIN_SIZE // 2, min(MIN_SIZE, MAX_SIZE_W, MAX_SIZE_H))
-    x = random.randint(radius + 10, SCREEN_WIDTH - radius)
-    y = random.randint(radius + 10, SCREEN_HEIGHT - radius)
+    x = random.randint(radius + 10, SCREEN_WIDTH - radius - 10)
+    y = random.randint(radius + 10, SCREEN_HEIGHT - radius - 10)
     return 'circle', (x, y, radius)  # center_x, center_y, radius
 
 
 def random_ellipse():
     w = random.randint(MIN_SIZE, MAX_SIZE_W)
     h = random.randint(MIN_SIZE, MAX_SIZE_H)
-    x = random.randint(10, SCREEN_WIDTH - w)
-    y = random.randint(10, SCREEN_HEIGHT - h)
+    x = random.randint(w, SCREEN_WIDTH - w)
+    y = random.randint(h, SCREEN_HEIGHT - h)
     return 'ellipse', pygame.Rect(x, y, w, h)
 
 
@@ -81,4 +81,6 @@ def generate_shapes():
         random_triangle(),
         random_polygon(sides=5),
         random_polygon(sides=4),
+        random_polygon(sides=6),
+        random_polygon(sides=3)
     ]

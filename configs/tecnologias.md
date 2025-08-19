@@ -30,3 +30,11 @@ Outras referências são:
 A lógica de construção do jogo se dará na seguinte maneira:
 
 - 
+
+
+---
+- Citar IAs no trabalho?
+- Todas as referências são úteis?
+
+
+Se um jogador clicar numa face que não podia, o outro

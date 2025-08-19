@@ -1,6 +1,6 @@
 import sys
 import pygame
-from constants import *
+import constants
 from graph import Graph
 import shapes as shapes_module
 from game import play
@@ -10,7 +10,7 @@ from menu import draw_menu
 pygame.init()
 
 # Janela [1]
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+SCREEN = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 pygame.display.set_caption("COL")
 
 # Loop de jogo [2]
@@ -28,13 +28,12 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                if PLAY_BUTTON.collidepoint(event.pos):
-                    print(f"Iniciando jogo com 2 jogadores!")
-                    # gera novas shapes aleatórias a cada partida
+                if constants.PLAY_BUTTON.collidepoint(event.pos):
+                    print(f"Iniciando jogo com {constants.temporary_number_of_players} jogadores!")
                     shapes = shapes_module.generate_shapes()
-                    graph = Graph(shapes, area_minima_face=100)
+                    graph = Graph(shapes, area_minima_face=70)  # área mínima de face para evitar faces muito pequenas
                     game_started = True
-        draw_menu(SCREEN)
+        draw_menu(SCREEN, events)
         pygame.display.update()
     else:
         cont = play(SCREEN, graph, events)
