@@ -32,29 +32,26 @@ def qualquer_pode_jogar(graph: Graph):
 # Tela de jogo
 def play(screen, graph: Graph, events):
     # Variáveis estáticas para manter estado entre chamadas
-    if not hasattr(play, "turn"):
-        play.turn = 0
+    if not hasattr(play, "active_players"):
+        # Initialize active players set and turn position
+        play.active_players = list(range(constants.temporary_number_of_players))
+        play.turn_pos = 0
         play.finished = False
         play.winner = None
+        play.last_player = None
+
     screen.fill(constants.BG_COLOR)
 
     # Desenha grafo (faces preenchidas e arestas)
     graph.desenhar(screen, cor_arestas=constants.SHAPES_COLOR, largura_arestas=1)
 
-    # Indica turno atual na frente
-    turno_text = f"Vez de: {constants.player_names[play.turn]}"
-    turno_surf = constants.FONT_MEDIUM.render(turno_text, True, constants.PLAYER_COLORS[play.turn])
-    screen.blit(turno_surf, (20, 20))
-    # Verifica se jogador atual não tem jogadas; se sim, encerra jogo (último a jogar vence)
-    # Função inline para verificar jogadas
+    # Define função para verificar jogadas possíveis para um jogador
     def player_can_move(idx):
         cor = constants.PLAYER_COLORS[idx]
         for face in graph.faces:
             if face['color'] is not None: continue
-            # arestas da face
             verts = face['vertices']
             edges_f = set(tuple(sorted((verts[i], verts[(i+1)%len(verts)]))) for i in range(len(verts)))
-            # verifica bloqueio por mesma cor em face adjacente
             blocked = False
             for other in graph.faces:
                 if other is face or other['color'] is None: continue
@@ -66,11 +63,32 @@ def play(screen, graph: Graph, events):
                 return True
         return False
 
-    if not player_can_move(play.turn):
+    # Elimina jogadores sem jogadas possíveis
+    for p in play.active_players.copy():
+        if not player_can_move(p):
+            play.active_players.remove(p)
+
+    # Ajusta turn_pos para ficar dentro do range atual de active_players
+    if play.active_players:
+        play.turn_pos %= len(play.active_players)
+
+    # Verifica fim de jogo: se restar 1 ou nenhum jogador ativo
+    if not play.finished and len(play.active_players) <= 1:
         play.finished = True
-        play.winner = (play.turn - 1) % constants.temporary_number_of_players
-        # skip event processing, will draw vitória no bloco abaixo
-        # ...existing code continues to draw end screen...
+        if len(play.active_players) == 1:
+            play.winner = play.active_players[0]
+        else:
+            # todos eliminados; último a jogar vence
+            play.winner = play.last_player
+
+    # Indica turno atual na frente
+    if not play.finished and play.active_players:
+        current = play.active_players[play.turn_pos]
+
+        turno_text = f"Vez de: {constants.player_names[current]}"
+        turno_surf = constants.FONT_MEDIUM.render(turno_text, True, constants.TEXT_COLOR)
+        screen.blit(turno_surf, (20, 20))
+
     # Processa eventos
     for event in events:
         if event.type == pygame.QUIT:
@@ -78,19 +96,20 @@ def play(screen, graph: Graph, events):
             sys.exit()
         if play.finished:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and constants.PLAY_BUTTON.collidepoint(event.pos):
-                # voltar ao menu
-                play.turn = 0
-                play.finished = False
-                play.winner = None
+                # voltar ao menu: reset static state so next game reinitializes
+                for attr in ("active_players", "turn_pos", "finished", "winner"):
+                    if hasattr(play, attr):
+                        delattr(play, attr)
                 return False
         else:
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                print("Vez de jogador:", play.turn)
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and play.active_players:
+                current = play.active_players[play.turn_pos]
+                print("Vez de jogador:", current)
                 pos = event.pos
                 for idx, face in enumerate(graph.faces):
                     if graph._ponto_no_poligono(pos, face['vertices']) and face['color'] is None:
 
-                        cor = constants.PLAYER_COLORS[play.turn]
+                        cor = constants.PLAYER_COLORS[current]
 
                         # checa faces adjacentes (compartilham aresta)
                         bloqueado = False
@@ -103,36 +122,80 @@ def play(screen, graph: Graph, events):
                         edges_f = set(tuple(sorted((f_verts[i], f_verts[(i+1)%len(f_verts)]))) for i in range(len(f_verts)))
 
                         for j, other in enumerate(graph.faces):
-                            if j==idx or other['color'] is None:
-                                continue
+                             if j==idx or other['color'] is None:
+                                 continue
 
-                            # arestas da outra face
-                            ov = other['vertices']
+                             # arestas da outra face
+                             ov = other['vertices']
 
-                            # coleção de valores únicos de tuplas ordenadas que representam as arestas da outra face,
-                            #  geradas a partir de cada par de vértices consecutivos (incluindo a conexão do último ao primeiro).
-                            edges_o = set(tuple(sorted((ov[i], ov[(i+1)%len(ov)]))) for i in range(len(ov)))
+                             # coleção de valores únicos de tuplas ordenadas que representam as arestas da outra face,
+                             #  geradas a partir de cada par de vértices consecutivos (incluindo a conexão do último ao primeiro).
+                             edges_o = set(tuple(sorted((ov[i], ov[(i+1)%len(ov)]))) for i in range(len(ov)))
 
-                            # se compartilham aresta
-                            if edges_f & edges_o and other['color']==cor:
-                                bloqueado = True
-                                print("Jogador", play.turn, "não pode colorir a face", idx, "com a cor", cor, "porque está bloqueado por outra face.")
-                                break
+                             # se compartilham aresta
+                             if edges_f & edges_o and other['color']==cor:
+                                 bloqueado = True
+                                 print("Jogador", current, "não pode colorir a face", idx, "com a cor", cor, "porque está bloqueado por outra face.")
+                                 break
 
                         if not bloqueado:
                             graph.colorir_face(idx, cor)
+                            # registra último jogador que fez jogada
+                            play.last_player = current
+                            # Avança para o próximo jogador ativo
+                            play.turn_pos = (play.turn_pos + 1) % len(play.active_players)
 
-                            # Lógica de turno
-                            play.turn = (play.turn + 1) % constants.temporary_number_of_players
+                            # Exibe informações do jogo
+                            print(f"Jogadores ativos: {', '.join(map(str, play.active_players))}")
+                            print(f"Vez de jogador: {constants.player_names[current]} ({current})")
+
+                            # Lista de faces possíveis para o jogador atual
+                            possible_faces = []
+                            cor = constants.PLAYER_COLORS[current]
+                            for idx, face in enumerate(graph.faces):
+                                if face['color'] is not None:
+                                    continue
+
+                                # gera arestas da face candidata
+                                f_verts = face['vertices']
+                                edges_f = set(
+                                    tuple(sorted((f_verts[i], f_verts[(i + 1) % len(f_verts)])))
+                                    for i in range(len(f_verts))
+                                )
+
+                                # verifica bloqueio por faces adjacentes da mesma cor
+                                blocked = False
+                                for other in graph.faces:
+                                    if other['color'] is None:
+                                        continue
+                                    ov = other['vertices']
+                                    edges_o = set(
+                                        tuple(sorted((ov[i], ov[(i + 1) % len(ov)])))
+                                        for i in range(len(ov))
+                                    )
+                                    if edges_f & edges_o and other['color'] == cor:
+                                        blocked = True
+                                        break
+
+                                if not blocked:
+                                    possible_faces.append(idx)
+
+                            print(f"Possíveis jogadas (faces): {', '.join(map(str, possible_faces))}")
 
                         break
     # Quando finalizado, mostra mensagem no topo e botão
     if play.finished:
         msg = f"{constants.player_names[play.winner]} venceu!"
-        msg_surf = constants.FONT_LARGE.render(msg, True, "#000000")
+        msg_surf = constants.FONT_LARGE.render(msg, True, constants.PLAYER_COLORS[play.winner])
 
         # exibe mensagem de vitória no topo centralizado
         msg_rect = msg_surf.get_rect(midtop=(constants.SCREEN_WIDTH//2, 20))
+
+        padding_x = 20
+        padding_y = 10
+        bg_rect = msg_rect.inflate(padding_x, padding_y)
+        pygame.draw.rect(screen, (0, 0, 0), bg_rect, border_radius=4)
+
         screen.blit(msg_surf, msg_rect)
 
         color_btn = constants.BUTTON_HOVER if constants.PLAY_BUTTON.collidepoint(pygame.mouse.get_pos()) else constants.BUTTON_COLOR
