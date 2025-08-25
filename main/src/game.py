@@ -109,12 +109,12 @@ def play(screen, graph: Graph, events):
         turno_surf = constants.FONT_MEDIUM.render(f"Vez de: {constants.player_names[current]}", True, constants.PLAYER_COLORS[current])
         timer_surf = constants.FONT_SMALL.render(f"{remaining}s", True, constants.TEXT_COLOR)
         center_x = constants.SCREEN_WIDTH // 2
-        total_width = strike_surf.get_width() + 10 + turno_surf.get_width() + 10 + timer_surf.get_width()
+        total_width = strike_surf.get_width() + 15 + turno_surf.get_width() + 15 + timer_surf.get_width()
         start_x = center_x - total_width // 2
-        y = 20
+        y = 21
         screen.blit(strike_surf, (start_x, y))
-        screen.blit(turno_surf, (start_x + strike_surf.get_width() + 10, y - 4))  # Posição do texto de "Vez do jogador", um pouco mais alto, para centralizar melhor
-        screen.blit(timer_surf, (start_x + strike_surf.get_width() + 10 + turno_surf.get_width() + 10, y))
+        screen.blit(turno_surf, (start_x + strike_surf.get_width() + 15, y - 4))  # Posição do texto de "Vez do jogador", um pouco mais alto, para centralizar melhor
+        screen.blit(timer_surf, (start_x + strike_surf.get_width() + 15 + turno_surf.get_width() + 10, y))
         # show timeout message for 2 seconds
         if play.timeout_message and now - play.timeout_message_time <= 2000:
             msg_surf = constants.FONT_SMALL.render(play.timeout_message, True, constants.TEXT_COLOR)
