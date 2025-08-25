@@ -62,8 +62,16 @@ A lógica de construção do jogo se dará na seguinte maneira:
 
 
 ---
-- Citar IAs no trabalho?
-- Todas as referências são úteis?
 
 
-Se um jogador clicar numa face que não podia, o outro
+~~- Complexidade
+- Jogo: Go
+- Teoria dos Jogos
+- Placar de strike 
+- Estratégia de jogo
+- Cronômetro
+
+- Número de jogadores
+- Número de figuras
+- Números de times
+
