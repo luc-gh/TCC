@@ -14,8 +14,8 @@ Baixa complexidade, jogabilidade alta, aplicabilidade conceitual e impacto socia
 
 O Col, como citado em [jogos](jogos.md), é um jogo onde dois jogadores alternam turnos para colorir vértices de um grafo planar, seguindo regras de coloração.
 
-A metodologia de desenvolvimento envolveu o Método Iterativo com Prototipagem Rápida de Design, citado no artigo 
-"A formação do conceito de um jogo: Estudo de processos metodológicos para a criação de um game" por Cruz e Garone (2013).
+A metodologia de desenvolvimento envolveu o **Método Iterativo com Prototipagem Rápida de Design**, citado no artigo 
+"A formação do conceito de um jogo: Estudo de processos metodológicos para a criação de um game" por Cruz e Garone (2013).  
 É um processo simples:
 
 - Repetição: implementar → testar → ajustar.
@@ -37,9 +37,18 @@ No jogo, há algumas características de desenvolvimento, visualização e jogab
 - O jogo foi desenvolvido e executado usando 7 arquivos Python: [constants.py](../main/src/constants.py), [shapes.py](../main/src/shapes.py), [menu.py](../main/src/menu.py), [graph.py](../main/src/graph.py), [planar_graph_convertion.py](../main/src/planar_graph_convertion.py), [game.py](../main/src/game.py) e [main.py](../main/src/main.py);
 - Conforme o jogo, algumas mensagens são exibidas no console, como o estado do jogo, o jogador atual, as jogadas possíveis e o vencedor;
 - O jogo permite a participação de 2 a 5 jogadores, cada um com uma cor;
+- Há um tempo limite de 30 segundos para cada jogada, aumentando a pressão e a necessidade de decisões rápidas;
+- Também há um limite de erros de 3 jogadas inválidas, o que elimina o jogador do jogo;
+- Tanto o timer quanto o número de erros são exibidos na tela, para que o jogador possa se planejar;
+- Quando apenas um jogador resta, o jogo termina e o vencedor é anunciado.
 
+#### Ideias para melhorias futuras:
 
-###  Metodologia -  SIM
+- Variar número de jogadores
+- Variar número de figuras
+- Variar número de times
+
+###  Metodologia - SIM **[DESCARTADO]**
 
 O SIM é um jogo de coloração de arestas, onde os jogadores devem colorir as arestas de um grafo completo $K_6$ de forma que não haja arestas adjacentes com a mesma cor.
 Para o desenvolvimento do jogo SIM, será usada a linguagem Java, com o ajuda do framework libGDX.
@@ -56,22 +65,5 @@ Outras referências são:
 - [Graphics - libGDX - Repositório do autor, com conceitos de alterações no estado da tela](https://github.com/luc-gh/Graphics_libGDX)
 - [Multiple Screens - libGDX - Repositório do autor, com conceitos do uso de múltiplas telas](https://github.com/luc-gh/Multiple-Screens_libGDX)
 
-A lógica de construção do jogo se dará na seguinte maneira:
-
-- 
-
-
 ---
-
-
-~~- Complexidade
-- Jogo: Go
-- Teoria dos Jogos
-- Placar de strike 
-- Estratégia de jogo
-- Cronômetro
-
-- Número de jogadores
-- Número de figuras
-- Números de times
 
