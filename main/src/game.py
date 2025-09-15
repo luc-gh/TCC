@@ -190,8 +190,10 @@ def play(screen, graph: Graph, events):
 
                         if not bloqueado:
                             graph.colorir_face(idx, cor)
+
                             # registra último jogador que fez jogada
                             play.last_player = current
+
                             # Avança para o próximo jogador ativo
                             play.turn_pos = (play.turn_pos + 1) % len(play.active_players)
                             play.turn_start_time = pygame.time.get_ticks()
