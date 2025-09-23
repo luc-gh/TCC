@@ -44,11 +44,11 @@ def draw_menu(screen: pygame.Surface, events: list[pygame.event.Event]):
 
     # Título
     title_surf = constants.FONT_MEDIUM.render("Número de jogadores", True, constants.TEXT_COLOR)  # Posicionamento vertical do texto "nº de jogadores"
-    title_pos = title_surf.get_rect(center=(constants.SCREEN_WIDTH//2, 105))
+    title_pos = title_surf.get_rect(center=(constants.SCREEN_WIDTH//2, 115))
     screen.blit(title_surf, title_surf.get_rect(center=(constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)))
 
     # Setas e número atual
-    arrows_y = title_pos.bottom + 210
+    arrows_y = title_pos.bottom + 230
     constants.LEFT_ARROW.topleft = (constants.SCREEN_WIDTH // 2 - 100, arrows_y)
     constants.RIGHT_ARROW.topleft = (constants.SCREEN_WIDTH // 2 + 60, arrows_y)
 
@@ -77,7 +77,7 @@ def draw_menu(screen: pygame.Surface, events: list[pygame.event.Event]):
     spacing = 75
     total_width = (count - 1) * spacing
     start_x = constants.SCREEN_WIDTH//2 - total_width//2
-    y_text = 400  # Posicionamento vertical da lista de jogadores
+    y_text = 420  # Posicionamento vertical da lista de jogadores
 
     for i in range(constants.temporary_number_of_players):
         dimension_square = 30

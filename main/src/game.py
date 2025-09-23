@@ -3,6 +3,7 @@ import pygame
 import constants
 from graph import Graph
 
+
 def qualquer_pode_jogar(graph: Graph):
     for i, cor in enumerate(constants.PLAYER_COLORS):
         for face in graph.faces:
@@ -31,6 +32,7 @@ def qualquer_pode_jogar(graph: Graph):
 
 # Tela de jogo
 def play(screen, graph: Graph, events):
+
     # Variáveis estáticas para manter estado entre chamadas
     if not hasattr(play, "active_players"):
         play.active_players = list(range(constants.temporary_number_of_players))
@@ -46,10 +48,12 @@ def play(screen, graph: Graph, events):
 
     screen.fill(constants.BG_COLOR)
 
-    # Desenha grafo (faces preenchidas e arestas)
+    graph_area = pygame.Rect(0, 0, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
+    prev_clip = screen.get_clip()
+    screen.set_clip(graph_area)
     graph.desenhar(screen, cor_arestas=constants.SHAPES_COLOR, largura_arestas=1)
+    screen.set_clip(prev_clip)
 
-    # Define função para verificar jogadas possíveis para um jogador
     def player_can_move(idx):
         cor = constants.PLAYER_COLORS[idx]
         for face in graph.faces:
@@ -85,7 +89,6 @@ def play(screen, graph: Graph, events):
             # todos eliminados; último a jogar vence
             play.winner = play.last_player
 
-    # Indica turno atual na frente
     if not play.finished and play.active_players:
         current = play.active_players[play.turn_pos]
         now = pygame.time.get_ticks()
@@ -104,21 +107,40 @@ def play(screen, graph: Graph, events):
             else:
                 play.turn_pos = (play.turn_pos + 1) % len(play.active_players)
             play.turn_start_time = now
-        # render texts: strikes, turn, timer
-        strike_surf = constants.FONT_SMALL.render(f"Strikes: {play.strikes[current]}/3", True, constants.TEXT_COLOR)
-        turno_surf = constants.FONT_MEDIUM.render(f"Vez de: {constants.player_names[current]}", True, constants.PLAYER_COLORS[current])
-        timer_surf = constants.FONT_SMALL.render(f"{remaining}s", True, constants.TEXT_COLOR)
-        center_x = constants.SCREEN_WIDTH // 2
-        total_width = strike_surf.get_width() + 15 + turno_surf.get_width() + 15 + timer_surf.get_width()
-        start_x = center_x - total_width // 2
-        y = 21
-        screen.blit(strike_surf, (start_x, y))
-        screen.blit(turno_surf, (start_x + strike_surf.get_width() + 15, y - 4))  # Posição do texto de "Vez do jogador", um pouco mais alto, para centralizar melhor
-        screen.blit(timer_surf, (start_x + strike_surf.get_width() + 15 + turno_surf.get_width() + 10, y))
-        # show timeout message for 2 seconds
+
+        # Desenha placar lateral
+        inicio_area_placar_x = constants.SCREEN_WIDTH - constants.SCOREBOARD_WIDTH + 25
+        center_x = inicio_area_placar_x + constants.SCOREBOARD_WIDTH // 2
+        padding = constants.SCOREBOARD_PADDING
+        col_w = (constants.SCOREBOARD_WIDTH - padding * 2) // 4
+        row_h = constants.FONT_MEDIUM.get_height() + 8
+
+        # retângulo dinâmico ao redor do placar
+        box_rect = pygame.Rect(
+            inicio_area_placar_x + 30,                 # pos x
+            padding,                                   # pos y
+            constants.SCOREBOARD_WIDTH - 70,           # largura
+            row_h * len(play.active_players) + 5       # altura (dinâmica conforme jogadores)
+        )
+
+        pygame.draw.rect(screen, constants.SHAPES_COLOR, box_rect, 2)
+        for idx, p in enumerate(play.active_players):
+            y = padding + 10 + idx * row_h
+            x = inicio_area_placar_x + padding
+            if p == current:
+                arrow = constants.FONT_MEDIUM.render('>', True, constants.PLAYER_COLORS[p])
+                screen.blit(arrow, (x+35, y-6))
+            name = constants.FONT_SMALL.render(constants.player_names[p], True, constants.PLAYER_COLORS[p])
+            screen.blit(name, (x + col_w, y))
+            if p == current:
+                timer = constants.FONT_SMALL.render(f"{remaining}s", True, constants.TEXT_COLOR)
+                screen.blit(timer, (x + col_w * 2 + 15, y))
+            strikes = constants.FONT_SMALL.render(f"{play.strikes.get(p,0)}/3", True, constants.TEXT_COLOR)
+            screen.blit(strikes, (x + col_w * 3, y))
+
         if play.timeout_message and now - play.timeout_message_time <= 2000:
             msg_surf = constants.FONT_SMALL.render(play.timeout_message, True, constants.TEXT_COLOR)
-            msg_rect = msg_surf.get_rect(center=(center_x, y + 30))
+            msg_rect = msg_surf.get_rect(center=(center_x, y + 40))  # mensagem temporizada abaixo do placar
             screen.blit(msg_surf, msg_rect)
 
     # Processa eventos
@@ -167,24 +189,27 @@ def play(screen, graph: Graph, events):
                              # se compartilham aresta
                              if edges_f & edges_o and other['color']==cor:
                                  bloqueado = True
-                                 # invalid move: increment strikes and show message
+
+                                 # movimento inválido: incrementa strikes e mostra mensagem
                                  now2 = pygame.time.get_ticks()
                                  play.strikes[current] += 1
                                  play.timeout_message = f"Jogada inválida: {play.strikes[current]}/3"
                                  play.timeout_message_time = now2
-                                 # eliminate if too many strikes
+
+                                 # elimina jogador se atingir 3 strikes
                                  if play.strikes[current] >= 3:
                                      play.active_players.remove(current)
-                                     # adjust turn_pos
+
+                                     # ajusta turn_pos para ficar dentro do range atual de active_players
                                      if play.active_players:
                                          play.turn_pos %= len(play.active_players)
                                      else:
                                          play.turn_pos = 0
-                                 # reset timer for current or next player
+                                 # zera o temporizador para o jogador atual ou próximo
                                  play.turn_start_time = now2
                                  break  # exit adjacency loop
 
-                        # after adjacency check
+                        # depois de checar todas as faces adjacentes
                         if bloqueado:
                             break  # exit face loop after invalid
 

@@ -4,8 +4,12 @@ import pygame
 pygame.init()
 
 # Dimensões
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 880  # expanded 10%
+SCREEN_HEIGHT = 660  # expanded 10%
+
+# Scoreboard area
+SCOREBOARD_WIDTH = int(SCREEN_WIDTH * 0.3)
+SCOREBOARD_PADDING = 10
 
 # Cores
 BG_COLOR       = pygame.Color('#ffffff')
