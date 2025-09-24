@@ -8,7 +8,7 @@ SCREEN_WIDTH = 880  # expanded 10%
 SCREEN_HEIGHT = 660  # expanded 10%
 
 # Scoreboard area
-SCOREBOARD_WIDTH = int(SCREEN_WIDTH * 0.3)
+SCOREBOARD_WIDTH = int(SCREEN_WIDTH * 0.28)
 SCOREBOARD_PADDING = 10
 
 # Cores
