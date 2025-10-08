@@ -21,6 +21,8 @@ shapes = None  # receberá lista de shapes da partida
 graph: Graph = None
 
 while running:
+
+    # Eventos [3]
     events = pygame.event.get()
 
     if not game_started:
