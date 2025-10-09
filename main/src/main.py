@@ -32,7 +32,7 @@ while running:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if constants.PLAY_BUTTON.collidepoint(event.pos):
                     print(f"Iniciando jogo com {constants.temporary_number_of_players} jogadores!")
-                    shapes = shapes_module.generate_shapes()
+                    shapes = shapes_module.generate_shapes()    # gera novas shapes (número fixo)
                     graph = Graph(shapes, area_minima_face=70)  # área mínima de face para evitar faces muito pequenas
                     game_started = True
         draw_menu(SCREEN, events)

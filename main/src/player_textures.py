@@ -1,91 +1,74 @@
 import pygame, constants
-from textures import gradient_surface, stripe_texture
+from textures import gradient_surface, stripe_texture, pixel_texture, wave_texture
 
 
 def create_player_textures(size=(100, 100)):
     """
     Cria texturas procedurais para cada jogador baseadas em suas cores.
     Retorna um dicionário {player_index: Surface}.
+    Se adapta automaticamente ao número de jogadores definido em constants.MAX_PLAYERS.
     """
     textures = {}
 
-    # Jogador 0 (Vermelho) - Listras diagonais
-    base_red = constants.PLAYER_COLORS[0]
-    dark_red = pygame.Color(
-        max(0, base_red.r - 40),
-        max(0, base_red.g - 20),
-        max(0, base_red.b - 20)
-    )
-    textures[0] = stripe_texture(
-        size,
-        base_red,
-        dark_red,
-        stripe_width=8,
-        spacing=8,
-        angle=45
-    )
+    # Padrões de textura que se repetem ciclicamente
+    texture_patterns = [
+        'wave',                # 0
+        'stripe_diagonal',     # 1
+        'pixel',               # 2
+        'solid',               # 3
+        'wave',                # 4
+        'stripe_horizontal',   # 5
+        'wave',                # 6
+        'solid',               # 7
+        'stripe_diagonal',     # 8
+        'pixel'                # 9
+    ]
 
-    # Jogador 1 (Verde) - Gradiente vertical
-    base_green = constants.PLAYER_COLORS[1]
-    light_green = pygame.Color(
-        min(255, base_green.r + 30),
-        min(255, base_green.g + 30),
-        min(255, base_green.b + 30)
-    )
-    textures[1] = gradient_surface(
-        size,
-        base_green,
-        light_green,
-        vertical=True
-    )
+    for i in range(len(constants.PLAYER_COLORS)):
+        base_color = constants.PLAYER_COLORS[i]
+        pattern = texture_patterns[i % len(texture_patterns)]
 
-    # Jogador 2 (Azul) - Listras horizontais
-    base_blue = constants.PLAYER_COLORS[2]
-    dark_blue = pygame.Color(
-        max(0, base_blue.r - 30),
-        max(0, base_blue.g - 30),
-        max(0, base_blue.b - 30)
-    )
-    textures[2] = stripe_texture(
-        size,
-        base_blue,
-        dark_blue,
-        stripe_width=6,
-        spacing=6,
-        angle=0
-    )
+        if pattern == 'wave':
+            textures[i] = wave_texture(size, base_color)
 
-    # Jogador 3 (Roxo) - Listras diagonais invertidas
-    base_purple = constants.PLAYER_COLORS[3]
-    light_purple = pygame.Color(
-        min(255, base_purple.r + 25),
-        min(255, base_purple.g + 25),
-        min(255, base_purple.b + 25)
-    )
-    textures[3] = stripe_texture(
-        size,
-        base_purple,
-        light_purple,
-        stripe_width=7,
-        spacing=7,
-        angle=-45
-    )
+        elif pattern == 'gradient_vertical':
+            dark_color = pygame.Color(
+                max(0, base_color.r - 40),
+                max(0, base_color.g - 20),
+                max(0, base_color.b - 20)
+            )
+            textures[i] = gradient_surface(size, base_color, dark_color, vertical=True)
 
-    # Jogador 4 (Amarelo) - Listras diagonais claras/escuras
-    base_yellow = constants.PLAYER_COLORS[4]
-    dark_yellow = pygame.Color(
-        max(0, base_yellow.r - 50),
-        max(0, base_yellow.g - 50),
-        max(0, base_yellow.b - 50)
-    )
-    textures[4] = stripe_texture(
-        size,
-        base_yellow,
-        dark_yellow,
-        stripe_width=10,
-        spacing=8,
-        angle=45
-    )
+        elif pattern == 'stripe_diagonal':
+            dark_color = pygame.Color(
+                max(0, base_color.r - 30),
+                max(0, base_color.g - 30),
+                max(0, base_color.b - 30)
+            )
+            textures[i] = stripe_texture(size, base_color, dark_color, stripe_width=8, spacing=8, angle=45)
+
+        elif pattern == 'pixel':
+            textures[i] = pixel_texture(size, base_color, tile_size=5, pattern='checker')
+
+        elif pattern == 'stripe_horizontal':
+            light_color = pygame.Color(
+                min(255, base_color.r + 25),
+                min(255, base_color.g + 25),
+                min(255, base_color.b + 25)
+            )
+            textures[i] = stripe_texture(size, base_color, light_color, stripe_width=6, spacing=6, angle=0)
+
+        elif pattern == 'solid':
+            textures[i] = pygame.Surface(size, pygame.SRCALPHA)
+            textures[i].fill(base_color)
+
+        elif pattern == 'gradient_horizontal':
+            light_color = pygame.Color(
+                min(255, base_color.r + 40),
+                min(255, base_color.g + 40),
+                min(255, base_color.b + 40)
+            )
+            textures[i] = gradient_surface(size, base_color, light_color, vertical=False)
 
     return textures
 

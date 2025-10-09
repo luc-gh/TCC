@@ -31,12 +31,14 @@ Mas originalmente, o jogo é jogado em papel e só permite a participação de d
 - A lógica de coloração foi a mesma, garantir que um jogador não possa colorir uma face que já foi colorida por outro jogador, e que duas faces adjacentes não possam ter a mesma cor.
 - Mas para garantir um vencedor, o jogo foi adaptado para que, a cada jogada, fosse verificado o estado do jogo, de modo a eliminar os jogadores que não possuíssem jogadas possíveis, isto é, que não possuíssem faces que pudessem ser coloridas.  
 - O jogo termina quando restar apenas um jogador, o vencedor.
+- Nota sobre design: as arestas tiverem sua espessura aumentada para melhorar a visualização das figuras e foram criadas texturas para as colorações das faces, para melhorar a distinção entre as cores.  
+  Tais modificações estão presentes ou implementadas nos arquivos [constants.py](../main/src/constants.py), [textures.py](../main/src/textures.py), [player_textures.py](../main/src/player_textures.py) e [graph.py](../main/src/graph.py).
 
 No jogo, há algumas características de desenvolvimento, visualização e jogabilidade em destaque:
 
-- O jogo foi desenvolvido e executado usando 7 arquivos Python: [constants.py](../main/src/constants.py), [shapes.py](../main/src/shapes.py), [menu.py](../main/src/menu.py), [graph.py](../main/src/graph.py), [planar_graph_convertion.py](../main/src/planar_graph_convertion.py), [game.py](../main/src/game.py) e [main.py](../main/src/main.py);
+- O jogo foi desenvolvido e executado usando 9 arquivos Python: [constants.py](../main/src/constants.py), [shapes.py](../main/src/shapes.py), [menu.py](../main/src/menu.py), [graph.py](../main/src/graph.py), [textures.py](../main/src/textures.py), [player_textures.py](../main/src/player_textures.py), [planar_graph_convertion.py](../main/src/planar_graph_convertion.py), [game.py](../main/src/game.py) e [main.py](../main/src/main.py);
 - Conforme o jogo, algumas mensagens são exibidas no console, como o estado do jogo, o jogador atual, as jogadas possíveis e o vencedor;
-- O jogo permite a participação de 2 a 5 jogadores, cada um com uma cor;
+- O jogo permite a participação de 2 a 6 jogadores, cada um com uma cor (desenhada com texturas específicas) diferente;
 - Há um tempo limite de 30 segundos para cada jogada, aumentando a pressão e a necessidade de decisões rápidas;
 - Também há um limite de erros de 3 jogadas inválidas, o que elimina o jogador do jogo;
 - Tanto o timer quanto o número de erros são exibidos na tela, para que o jogador possa se planejar;
@@ -44,9 +46,11 @@ No jogo, há algumas características de desenvolvimento, visualização e jogab
 
 #### Ideias para melhorias futuras:
 
-- Variar número de jogadores
-- Variar número de figuras
-- Variar número de times
+- Variar número de jogadores (já implementado, mas pode ser melhorado)
+- Variar número de figuras (deixar sob controle do jogador, desde que supere o mínimo necessário para formar um grafo planar)
+- Variar número de times (caso tenham mais de 10 jogadores, futuramente)
+- Melhorar a interface gráfica (atualmente é simples, mas funcional)
+- Adicionar sons e músicas (para melhorar a imersão)
 
 ###  Metodologia - SIM **[DESCARTADO]**
 

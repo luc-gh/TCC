@@ -1,7 +1,6 @@
 import pygame
 from planar_graph_convertion import extract_segments, find_intersections, split_segments, detect_faces
 from player_textures import get_player_texture
-from textures import tiled_texture
 import constants
 
 class Graph:
@@ -70,8 +69,8 @@ class Graph:
                         break
 
                 if player_idx is not None:
-                    # Usa textura para jogadores
-                    texture = get_player_texture(player_idx)
+                    # Usa textura para jogadores baseada no padrão definido em texture_patterns
+                    base_texture = get_player_texture(player_idx)
 
                     # Calcula bounding box da face
                     xs = [v[0] for v in face['vertices']]
@@ -81,8 +80,12 @@ class Graph:
                     width = int(max_x - min_x + 1)
                     height = int(max_y - min_y + 1)
 
-                    # Cria textura em tile do tamanho da face
-                    tiled = tiled_texture((width, height), texture)
+                    # Cria textura tiled do tamanho da face
+                    textured = pygame.Surface((width, height), pygame.SRCALPHA)
+                    tw, th = base_texture.get_size()
+                    for x in range(0, width, tw):
+                        for y in range(0, height, th):
+                            textured.blit(base_texture, (x, y))
 
                     # Cria uma máscara da face
                     mask_surface = pygame.Surface((width, height), pygame.SRCALPHA)
@@ -90,8 +93,8 @@ class Graph:
                     pygame.draw.polygon(mask_surface, (255, 255, 255, 255), adjusted_verts)
 
                     # Aplica a textura apenas na área da face
-                    tiled.blit(mask_surface, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                    superficie.blit(tiled, (min_x, min_y))
+                    textured.blit(mask_surface, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                    superficie.blit(textured, (min_x, min_y))
                 else:
                     # Cor sólida para faces não-jogador
                     pygame.draw.polygon(superficie, face['color'], face['vertices'])

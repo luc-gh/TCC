@@ -51,7 +51,7 @@ def play(screen, graph: Graph, events):
     graph_area = pygame.Rect(0, 0, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
     prev_clip = screen.get_clip()
     screen.set_clip(graph_area)
-    graph.desenhar(screen, cor_arestas=constants.SHAPES_COLOR, largura_arestas=3)  # Largura maior
+    graph.desenhar(screen, cor_arestas=constants.SHAPES_COLOR, largura_arestas=4)  # LARGURA MAIOR DAS ARESTAS -----------------------
     screen.set_clip(prev_clip)
 
     def player_can_move(idx):

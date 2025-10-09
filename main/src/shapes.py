@@ -71,12 +71,10 @@ POSSIBLE_SHAPES = [
 ]
 
 def generate_shapes():
-    """
-    Gera uma nova coleção de shapes aleatórias para iniciar uma partida.
-    """
     return [
         random_rect(),
         random_circle(),
+        random_triangle(),
         random_ellipse(),
         random_triangle(),
         random_polygon(sides=5),
