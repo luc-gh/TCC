@@ -29,8 +29,8 @@ _BASE_PLAYER_COLORS = [
     pygame.Color('#000080'),  # Azul
     pygame.Color('#ffc30a'),  # Amarelo
     pygame.Color('#ff4d05'),  # Laranja
-    pygame.Color('#008080'),  # Teal (verde-azulado)
     pygame.Color('#800080'),  # Roxo
+    pygame.Color('#5b1f00'),  # Marrom
     pygame.Color('#00ffff'),  # Ciano
     pygame.Color('#f000d0'),  # Rosa
     pygame.Color('#808080')   # Cinza
