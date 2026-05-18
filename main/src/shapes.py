@@ -77,8 +77,5 @@ def generate_shapes():
         random_triangle(),
         random_ellipse(),
         random_triangle(),
-        random_polygon(sides=5),
-        random_polygon(sides=4),
-        random_polygon(sides=6),
-        random_polygon(sides=3)
+        random_polygon(sides=5)
     ]

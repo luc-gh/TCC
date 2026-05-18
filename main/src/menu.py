@@ -3,8 +3,8 @@ import constants
 
 # Logo
 try:
-    logo_img = pygame.image.load(r'C:/Users/conta/Documents/Programacao/Outros/TCC/main/assets/col-logo.png')
-    logo_img = pygame.transform.smoothscale(logo_img, (1600, 900))     # Redimensionar a imagem
+    logo_img = pygame.image.load(r'C:/Users/conta/Documents/Programacao/Outros/TCC/main/asset/col-logo.png')
+    logo_img = pygame.transform.smoothscale(logo_img, (600, 370))     # Redimensionar a imagem
 except pygame.error:
     logo_img = None  # se falhar ao carregar, seguimos sem imagem
 

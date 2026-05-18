@@ -168,26 +168,30 @@ def play(screen, graph: Graph, events):
                         # checa faces adjacentes (compartilham aresta)
                         bloqueado = False
 
-                        # gera arestas da face clicada
-                        f_verts = face['vertices']
+                        # pega vértices da face clicada
+                        vertices_da_face = face['vertices']
 
                         # pega a lista de valores únicos de tuplas ordenadas que representam as arestas de uma face,
                         #  geradas a partir de cada par de vértices consecutivos (incluindo a conexão do último ao primeiro).
-                        edges_f = set(tuple(sorted((f_verts[i], f_verts[(i+1)%len(f_verts)]))) for i in range(len(f_verts)))
+                        arestas_da_face = set(tuple(sorted(
+                            (vertices_da_face[i], vertices_da_face[(i+1)%len(vertices_da_face)])
+                        )) for i in range(len(vertices_da_face)))
 
-                        for j, other in enumerate(graph.faces):
-                             if j==idx or other['color'] is None:
+                        for face_atual, outra_face in enumerate(graph.faces):
+                             if face_atual==idx or outra_face['color'] is None:
                                  continue
 
                              # arestas da outra face
-                             ov = other['vertices']
+                             verts_outra = outra_face['vertices']
 
                              # coleção de valores únicos de tuplas ordenadas que representam as arestas da outra face,
                              #  geradas a partir de cada par de vértices consecutivos (incluindo a conexão do último ao primeiro).
-                             edges_o = set(tuple(sorted((ov[i], ov[(i+1)%len(ov)]))) for i in range(len(ov)))
+                             arestas_outra = set(tuple(sorted(
+                                 (verts_outra[i], verts_outra[(i+1)%len(verts_outra)])
+                             )) for i in range(len(verts_outra)))
 
                              # se compartilham aresta
-                             if edges_f & edges_o and other['color']==cor:
+                             if arestas_da_face & arestas_outra and outra_face['color']==cor:
                                  bloqueado = True
 
                                  # movimento inválido: incrementa strikes e mostra mensagem
@@ -207,6 +211,7 @@ def play(screen, graph: Graph, events):
                                          play.turn_pos = 0
                                  # zera o temporizador para o jogador atual ou próximo
                                  play.turn_start_time = now2
+
                                  break  # exit adjacency loop
 
                         # depois de checar todas as faces adjacentes
@@ -237,23 +242,23 @@ def play(screen, graph: Graph, events):
                                     continue
 
                                 # gera arestas da face candidata
-                                f_verts = face['vertices']
-                                edges_f = set(
-                                    tuple(sorted((f_verts[i], f_verts[(i + 1) % len(f_verts)])))
-                                    for i in range(len(f_verts))
+                                vertices_da_face = face['vertices']
+                                arestas_da_face = set(
+                                    tuple(sorted((vertices_da_face[i], vertices_da_face[(i + 1) % len(vertices_da_face)])))
+                                    for i in range(len(vertices_da_face))
                                 )
 
                                 # verifica bloqueio por faces adjacentes da mesma cor
                                 blocked = False
-                                for other in graph.faces:
-                                    if other['color'] is None:
+                                for outra_face in graph.faces:
+                                    if outra_face['color'] is None:
                                         continue
-                                    ov = other['vertices']
-                                    edges_o = set(
-                                        tuple(sorted((ov[i], ov[(i + 1) % len(ov)])))
-                                        for i in range(len(ov))
+                                    verts_outra = outra_face['vertices']
+                                    arestas_outra = set(
+                                        tuple(sorted((verts_outra[i], verts_outra[(i + 1) % len(verts_outra)])))
+                                        for i in range(len(verts_outra))
                                     )
-                                    if edges_f & edges_o and other['color'] == cor:
+                                    if arestas_da_face & arestas_outra and outra_face['color'] == cor:
                                         blocked = True
                                         break
 
