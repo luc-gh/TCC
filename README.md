@@ -25,10 +25,6 @@ Contribuição
 -------------
 Contribuições são bem-vindas. Para contribuir, faça um fork, crie uma branch com uma descrição curta, implemente mudanças e abra um pull request descrevendo a motivação e o impacto no TCC.
 
-Licença
--------
-Este projeto está previsto para distribuição como código aberto. Recomenda-se adicionar um arquivo `LICENSE` (por exemplo, MIT) antes de publicar.
-
 Contato
 -------
 Arnaldo Lucas (luc-gh) — autor do TCC
